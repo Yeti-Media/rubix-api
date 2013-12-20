@@ -1,0 +1,13 @@
+<%= form_for @pattern do |f| %>
+  <div>
+    <%= f.label :label %>
+    <%= f.text_field :label %>
+  </div>
+  <div>
+    <%= f.label :file %>
+    <%= f.file_field :file %>
+  </div>
+  <div>
+    <%= f.submit :accept %> <% if allow_destroy %> <%= button_to 'Delete', "#{patterns_path}/@pattern.id/", :method => 'delete', :confirm => 'Are you sure?' %> <% end %>
+  </div>
+<% end %>
