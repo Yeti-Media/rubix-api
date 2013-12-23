@@ -3,7 +3,7 @@ class Pattern < ActiveRecord::Base
 	belongs_to :user
 	#validates :file_exist, :file_is_image
 	validates :label, :presence => true
-  validates :aid, unique: true
+  validates :aid, uniqueness: true
 
   after_initialize :add_aid
 
@@ -12,8 +12,8 @@ class Pattern < ActiveRecord::Base
   def add_aid
     aid_valid = false
     while !aid_valid
-      self.aid = SecureRandom.base64(25)
-      aid_valid = aid.valid_attribute?(:aid)
+      self.aid = SecureRandom.base64(25).tr('+/=lIO0', 'pqrsxyz')
+      aid_valid = valid_attribute?(:aid)
     end
   end
 

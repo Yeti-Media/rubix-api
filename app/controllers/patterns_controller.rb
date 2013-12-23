@@ -3,7 +3,7 @@ class PatternsController < ApplicationController
   before_filter :load_pattern, only: [:edit, :destroy, :update]
 
   def index
-  	@patterns = current_user.patterns
+  	@patterns = current_user.patterns.page(params[:page]).per(20)
   end
 
   def new

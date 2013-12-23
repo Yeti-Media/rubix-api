@@ -25,6 +25,8 @@ gem 'letter_opener', :group => :development
 # used to generate thumb version for uploaded images
 gem 'mini_magick'
 
+# pagination
+gem 'kaminari'
 
 #----TESTS GEMS----
 group :development, :test do

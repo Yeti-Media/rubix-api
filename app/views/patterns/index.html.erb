@@ -1,16 +1,12 @@
 <h1>Patterns for user <%= "#{current_user.email}"%></h1>
-<% image_counter = 0 %>
+<p><%= link_to "Add Pattern", "#{patterns_path}/new", :class => 'navbar-link' %></p>
+<%= paginate @patterns %>
 <% @patterns.each do |pattern| %>
-	<% if image_counter == 0 %>
-		<div>
-	<% end %>
-	<% if image_counter == 4 %>
-		</div>
-		<% image_counter = 0 %>
-	<% end %>
+  <div>
 	<%= link_to "#{patterns_path}/#{pattern.id}/edit" do %>
   		<%= image_tag pattern.file.url, width: 260 %>
 	<% end %>
-	<% image_counter += 1 %>
+  </div>
 <% end %>
+<%= paginate @patterns %>
 <p><%= link_to "Add Pattern", "#{patterns_path}/new", :class => 'navbar-link' %></p>
