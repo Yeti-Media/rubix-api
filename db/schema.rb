@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131223192324) do
+ActiveRecord::Schema.define(version: 20131223230805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "patterns", force: true do |t|
     t.string   "file"
-    t.string   "label"
+    t.text     "label"
     t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20131223192324) do
   end
 
   add_index "patterns", ["aid"], name: "index_patterns_on_aid", using: :btree
+
+  create_table "scenarios", force: true do |t|
+    t.string   "file"
+    t.text     "result"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

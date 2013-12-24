@@ -1,0 +1,9 @@
+<h1>Api Tests</h1>
+
+<%= form_tag api_v1_patterns_feature_matcher_path, method: 'POST', target: 'test_frame', multipart: true do %>
+  <%= hidden_field_tag :access_token, current_user.access_token %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Test' %>
+<% end %>
+
+<iframe id="test_frame" frameborder="1" width="500" height="500"></iframe>

@@ -8,6 +8,6 @@
     <%= f.file_field :file %>
   </div>
   <div>
-    <%= f.submit :accept %> <% if allow_destroy %> <%= button_to 'Delete', "#{patterns_path}/@pattern.id/", :method => 'delete', :confirm => 'Are you sure?' %> <% end %>
+    <%= f.submit :accept %> 
   </div>
 <% end %>

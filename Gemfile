@@ -28,6 +28,11 @@ gem 'mini_magick'
 # pagination
 gem 'kaminari'
 
+# API documentation
+#gem 'apipie-rails'
+
+
+
 #----TESTS GEMS----
 group :development, :test do
 	# TODO: description for rspec-rails

@@ -1,12 +1,15 @@
+<%= link_to "console test", api_test_path  %>
 <h1>Patterns for user <%= "#{current_user.email}"%></h1>
-<p><%= link_to "Add Pattern", "#{patterns_path}/new", :class => 'navbar-link' %></p>
+<p><%= link_to "Add Pattern", new_pattern_path, :class => 'navbar-link' %></p>
 <%= paginate @patterns %>
 <% @patterns.each do |pattern| %>
   <div>
-	<%= link_to "#{patterns_path}/#{pattern.id}/edit" do %>
+	  <%= link_to edit_pattern_path(pattern) do %>
   		<%= image_tag pattern.file.url, width: 260 %>
-	<% end %>
+    <% end %>
+    <br />
+    <%= link_to 'Delete', pattern_path(pattern), :method => 'delete', :confirm => 'Are you sure?' %>
   </div>
 <% end %>
 <%= paginate @patterns %>
-<p><%= link_to "Add Pattern", "#{patterns_path}/new", :class => 'navbar-link' %></p>
+<p><%= link_to "Add Pattern", new_pattern_path, :class => 'navbar-link' %></p>
