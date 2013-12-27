@@ -1,6 +1,7 @@
 AnakinWebapp::Application.routes.draw do
   get "api_tests/show"
   devise_for :users
+  apipie
 
   resources :patterns
   resource :api_test

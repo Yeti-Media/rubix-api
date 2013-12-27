@@ -1,6 +1,7 @@
 module Anakin
   class FeatureMatcher
 
+
     def initialize(user, scenario)
       @user = user
       @scenario = scenario
@@ -19,6 +20,8 @@ module Anakin
       anakin.run_command
       Rails.logger.info("====== ANAKIN STDOUT  =======")
       Rails.logger.info anakin.stdout
+      Rails.logger.info("====== ANAKIN STDERR  =======")
+      Rails.logger.info anakin.stderr
       Rails.logger.info("====== ANAKIN ENDED   =======")
       anakin.stdout
     end
