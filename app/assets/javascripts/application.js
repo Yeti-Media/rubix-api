@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require_tree ./api
+//= require jquery.ui.widget.js
+//= require jquery.iframe-transport.js  
+//= require jquery.fileupload.js  

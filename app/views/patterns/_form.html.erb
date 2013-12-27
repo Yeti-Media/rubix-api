@@ -1,13 +1,13 @@
-<%= form_for @pattern do |f| %>
-  <div>
+<%= form_for @pattern, html: {role: 'form'} do |f| %>
+  <div class="from-group">
     <%= f.label :label %>
-    <%= f.text_field :label %>
+    <%= f.text_field :label, class: 'form-control' %>
   </div>
-  <div>
+  <div class="from-group">
     <%= f.label :file %>
-    <%= f.file_field :file %>
+    <%= f.file_field :file , class: 'form-control'%>
   </div>
-  <div>
-    <%= f.submit :accept %> 
+  <div class="from-group">
+    <%= f.submit :accept, class: 'btn btn-default' %> 
   </div>
 <% end %>

@@ -1,9 +1,24 @@
 <h1>Api Tests</h1>
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_tag api_v1_patterns_feature_matcher_path, method: 'POST', target: 'test_frame', multipart: true do %>
+      <%= hidden_field_tag :access_token, current_user.access_token %>
+      <%= file_field_tag :file %>
+      <%= submit_tag 'Create' %>
+    <% end %>
+  </div>
+</div>
 
-<%= form_tag api_v1_patterns_feature_matcher_path, method: 'POST', target: 'test_frame', multipart: true do %>
-  <%= hidden_field_tag :access_token, current_user.access_token %>
-  <%= file_field_tag :file %>
-  <%= submit_tag 'Test' %>
-<% end %>
-
-<iframe id="test_frame" frameborder="1" width="500" height="500"></iframe>
+<div class="row">
+  <h1>Results:</h1>
+  <div class="col-xs-6 matches">
+     <h2>Matches</h2>
+     <ul id="matches">
+     </ul>
+  </div>
+  <div class="col-xs-6 detection">
+    <h2>Detection</h2>
+    <div id="detection" style="position:relative;">
+    </div>
+  </div>
+</div>

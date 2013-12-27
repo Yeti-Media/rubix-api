@@ -29,8 +29,10 @@ gem 'mini_magick'
 gem 'kaminari'
 
 # API documentation
-#gem 'apipie-rails'
+gem 'apipie-rails'
 
+# Unix Command
+gem 'mixlib-shellout'
 
 
 #----TESTS GEMS----
@@ -83,6 +85,10 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+#Bootstrap Sass Version
+gem 'bootstrap-sass', '~> 3.0.3.0'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
