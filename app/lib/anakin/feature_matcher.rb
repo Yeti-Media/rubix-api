@@ -1,4 +1,7 @@
 module Anakin
+  class FeatureMatcherError < Exception
+  end
+
   class FeatureMatcher
 
 
@@ -23,7 +26,11 @@ module Anakin
       Rails.logger.info("====== ANAKIN STDERR  =======")
       Rails.logger.info anakin.stderr
       Rails.logger.info("====== ANAKIN ENDED   =======")
-      anakin.stdout
+      if anakin.stderr.empty?
+        anakin.stdout
+      else
+        raise Anakin::FeatureMatcherError, anakin.stderr
+      end
     end
 
     def build_response(output)
