@@ -34,6 +34,8 @@ gem 'apipie-rails'
 # Unix Command
 gem 'mixlib-shellout'
 
+#Config And Settings management
+gem 'settingslogic'
 
 #----TESTS GEMS----
 group :development, :test do

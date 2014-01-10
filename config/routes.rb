@@ -1,15 +1,26 @@
 AnakinWebapp::Application.routes.draw do
-  get "api_tests/show"
   devise_for :users
   apipie
 
   resources :patterns
-  resource :api_test
+  resources :categories do
+    resources :patterns
+  end
+
+  namespace :api_tests do
+    resource :landscape
+    resource :matching
+    resource :histogram
+    resource :ocr
+  end
   
   namespace :api do
     namespace :v1 do
+      resource :categories
       namespace :patterns do
         resource :feature_matcher
+        resource :histogram
+        resource :landscape, controller: 'landscape'
       end
       resources :patterns do
         resources :scenarios

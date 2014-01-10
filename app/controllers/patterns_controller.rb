@@ -1,9 +1,10 @@
 class PatternsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :load_category, only: [:index]
   before_filter :load_pattern, only: [:edit, :destroy, :update]
 
   def index
-  	@patterns = current_user.patterns.page(params[:page]).per(20)
+  	@patterns = current_user.patterns.where(category_id: params[:category_id]).page(params[:page]).per(20)
   end
 
   def new
@@ -11,16 +12,15 @@ class PatternsController < ApplicationController
   end
 
   def edit
-    
   end
 
   def create
-    @pattern = current_user.patterns.new(params.require(:pattern).permit(:label, :file))
+    @pattern = current_user.patterns.new(params.require(:pattern).permit(:label, :file, :category_id))
     notify(@pattern.save, "Pattern succesfully created!", "Pattern creation failed!")
   end
 
   def update
-    @pattern.attributes = params.require(:pattern).permit(:label, :file)
+    @pattern.attributes = params.require(:pattern).permit(:label, :file, :category)
     notify(@pattern.save, "Pattern succesfully updated!", "Pattern update failed!")
   end
 
@@ -31,6 +31,10 @@ class PatternsController < ApplicationController
   end
 
   private
+
+  def load_category
+    @category = Category.find(params[:category_id])
+  end
 
   def load_pattern
     @pattern = current_user.patterns.find(params[:id])
@@ -45,6 +49,5 @@ class PatternsController < ApplicationController
       render :new
     end
   end
-
 
 end

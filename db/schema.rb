@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131223230805) do
+ActiveRecord::Schema.define(version: 20140109225756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "patterns", force: true do |t|
     t.string   "file"
@@ -23,6 +29,7 @@ ActiveRecord::Schema.define(version: 20131223230805) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "aid"
+    t.integer  "category_id"
   end
 
   add_index "patterns", ["aid"], name: "index_patterns_on_aid", using: :btree

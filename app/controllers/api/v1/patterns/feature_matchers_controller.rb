@@ -13,6 +13,8 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
   api :GET, "/api/v1/patterns/feature_matching", "endpoint for get results of feature matching between patterns and a scenario"
   param :file, File, desc: "Image file"
   param :remote_file_url, String, desc: "URL of an image file"
+  param :mma, Integer, desc: "Minimum Amount of matches"
+  param :mr, Float, desc: "Minimum Ratio"
   example '{"label":"scene",
             "values":[{"center":{"x":102.526206970215,
                                  "y":94.42138671875},
@@ -22,25 +24,14 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
 
   def create
     scenario = create_scenario
-    matcher = Anakin::FeatureMatcher.new(@user,scenario)
+    matcher = Anakin::OCR.new(user: @user, scenario: scenario, flags: params)
     begin
-      @result = matcher.match!
+      @result = matcher.process!
       render json: @result
-    rescue Anakin::FeatureMatcherError => e
-      render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou'}, status: 500
+    rescue Anakin::GeneralError => e
+      render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou', log: e.message}, status: 500
     end
   end
 
-
-  private
-
-  def create_scenario
-    if params[:file]
-      attrs = {file: params[:file]}
-    elsif params[:url]
-      attrs = {remote_file_url: params[:url]}
-    end
-    Scenario.create(attrs)
-  end
 
 end

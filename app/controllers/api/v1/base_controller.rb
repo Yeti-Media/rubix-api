@@ -2,6 +2,16 @@ class Api::V1::BaseController < ApplicationController
   before_filter :cors_set_access_control_headers
   before_filter :authenticate_with_token!
 
+  protected
+
+  def create_scenario
+    if params[:file]
+      attrs = {file: params[:file]}
+    elsif params[:url]
+      attrs = {remote_file_url: params[:url]}
+    end
+    Scenario.create(attrs)
+  end
 
   private
 

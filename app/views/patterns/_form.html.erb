@@ -8,6 +8,11 @@
     <%= f.file_field :file , class: 'form-control'%>
   </div>
   <div class="from-group">
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, Category.all, :id, :title, include_blank: true , class: 'form-control'%>
+  </div>
+  <div class="from-group">
+    <br />
     <%= f.submit :accept, class: 'btn btn-default' %> 
   </div>
 <% end %>

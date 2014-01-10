@@ -1,0 +1,16 @@
+# config/application.yml
+defaults: &defaults
+  patterns:
+    categories:
+      - comparison
+      - matching
+      - ocr
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

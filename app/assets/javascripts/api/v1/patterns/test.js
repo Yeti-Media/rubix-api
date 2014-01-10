@@ -1,5 +1,5 @@
 $(function () {
-    $('#file').fileupload({
+    $('#feature_file').fileupload({
         dataType: 'json',
         done: function (e, data) {
               var res = data.result;
@@ -9,7 +9,7 @@ $(function () {
               $('#detection').html(scenario);
               $('#json_response').html(JSON.stringify(res));
               $.each(res.values, function(i, value){
-                $('#matches').html("<div><img src='"+ value.pattern_url +"' class='img-thumbnail' /></div>");
+                $('#matches').append("<div><img src='"+ value.pattern_url +"' class='img-thumbnail' /></div>");
                 var label_link = $('<a class="label_link">*</a>');
                 label_link.css({position: 'absolute', top: value.center.y, left: value.center.x, background: 'white', border: '3px solid blue', 'border-radius': '5px'});
                 label_link.attr({href: "http://" + value.label, target: '_new'});
@@ -21,6 +21,20 @@ $(function () {
                           width: 10, height: 10});
                   $('#detection').append(kp);
                 });
+              });
+            }
+    });
+    $('#histogram_file').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+              var res = data.result;
+              var scenario= new Image();
+              scenario.src = res.scenario_url;
+              $('#matches').html('');
+              $('#detection').html(scenario);
+              $('#json_response').html(JSON.stringify(res));
+              $.each(res.matches, function(i, value){
+                $('#matches').append("<div><img src='"+ value.pattern_url +"' class='img-thumbnail' /></div>");
               });
             }
     });
