@@ -1,4 +1,4 @@
-class Api::V1::Patterns::OcrsController < ApicationController
+class Api::V1::Patterns::OcrsController < Api::V1::BaseController
 
   resource_description do
     resource_id "Feature Matching"

@@ -37,9 +37,14 @@ gem 'mixlib-shellout'
 #Config And Settings management
 gem 'settingslogic'
 
+
+
 #----TESTS GEMS----
 group :development, :test do
-	# TODO: description for rspec-rails
+  # Deployment 
+  gem 'capistrano'
+
+  # TODO: description for rspec-rails
 	gem 'rspec-rails'
 
 	# TODO: description for database_cleaner
@@ -57,6 +62,7 @@ group :development, :test do
 	# TODO: description for launchy
 	gem 'launchy'
 end
+
 #=====rest of the gems=====
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
