@@ -14,8 +14,8 @@ class Api::V1::PatternsController < Api::V1::BaseController
   param :pattern, Hash do
     param :file, File, desc: "Image file", required: true
     param :label, String, desc: "Label (used for identification). If the image has the category 'ocr' Then the label should contain the text in the image", required: true
-    param :category, String, desc: "Category: (matching, comparison, ocr or face)", required: true
-    param :category_id, Integer , desc: "Category ID: retrieved from /api/v1/categories endpoint. Can be provided if category is not present", required: true
+    param :category_name, String, desc: "Category: (matching, comparison, ocr or face)", required: true
+    param :category_id, Integer , desc: "Category ID: retrieved from /api/v1/categories endpoint. Can be provided if category_name is not present", required: true
   end
   example '{"id": 123, "label": "abc123", "category_id": 1, "":"http://server.example/path/to/file"}'
  

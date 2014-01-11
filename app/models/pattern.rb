@@ -11,6 +11,16 @@ class Pattern < ActiveRecord::Base
 
   after_initialize :add_aid
 
+  def category_name
+    category.title
+  end
+
+  def category_name=(value)
+    if !category_id.present?
+      self.category_id = Category.find_by(title: value)
+    end
+  end
+
   private
 
   def add_aid
@@ -21,15 +31,7 @@ class Pattern < ActiveRecord::Base
     end
   end
 
-  def category=(value)
-    if !category_id.present?
-      self.category_id = Category.find_by(title: value)
-    end
-  end
 
-  def category
-    category.title
-  end
 
   def valid_attribute?(attribute_name)
     self.valid?
