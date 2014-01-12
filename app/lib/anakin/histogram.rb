@@ -23,8 +23,10 @@ module Anakin
       args = ""
       args += super
       args += " -#{@options[:flags][:method]} " if @options[:flags][:method].present?
-      if @options[:flags][:type].present?
-        args += " -h#{@options[:flags][:type].humanize} " 
+      tp = @options[:flags][:type]
+      if tp.present?
+        tp = tp == "hsv" ? tp.upcase : tp.capitalize
+        args += " -h#{tp}" 
       else
         args += " -h " 
       end

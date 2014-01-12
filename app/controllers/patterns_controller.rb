@@ -35,7 +35,7 @@ class PatternsController < ApplicationController
   private
 
   def load_category
-    @category = Category.find(params[:category_id])
+    @category = Category.find(params[:category_id]) if params[:category_id]
   end
 
   def load_pattern
