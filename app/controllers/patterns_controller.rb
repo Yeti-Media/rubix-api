@@ -4,7 +4,9 @@ class PatternsController < ApplicationController
   before_filter :load_pattern, only: [:edit, :destroy, :update]
 
   def index
-  	@patterns = current_user.patterns.where(category_id: params[:category_id]).page(params[:page]).per(20)
+  	@patterns = current_user.patterns
+    @patterns = @patterns.where(category_id: params[:category_id]) if params[:category_id]
+    @patterns = @patterns.page(params[:page]).per(20)
   end
 
   def new

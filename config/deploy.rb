@@ -25,7 +25,7 @@ namespace :config do
     run "ln -nfs #{shared_path}/uploads #{latest_release}/public/uploads"
     run "ln -nfs #{shared_path}/vendor/bundle #{latest_release}/vendor/bundle"
     run "ln -nfs #{shared_path}/assets #{latest_release}/public/assets"
-    run "ln -nfs #{latest_release}/bin/anakin anakin64"
+    run "ln -nfs #{latest_release}/bin/anakin64 #{latest_release}/bin/anakin"
   end
 end
 
