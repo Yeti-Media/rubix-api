@@ -29,5 +29,12 @@ namespace :config do
   end
 end
 
+namespace :deploy do
+  task :restart do
+    run "touch #{latest_release}/tmp/restart.txt"
+  end
+end
+
 after  "deploy", "config:symlink"
 after "deploy", "deploy:cleanup"
+after "deploy:cleanup", "deploy:restart"

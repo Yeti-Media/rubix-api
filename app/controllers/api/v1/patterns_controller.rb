@@ -21,7 +21,7 @@ class Api::V1::PatternsController < Api::V1::BaseController
  
 
   def create
-    @pattern = @user.patterns.new(params[:pattern])
+    @pattern = @user.patterns.new(params[:pattern].permit(:label, :file, :category_name, :category_id))
     if @pattern.save
       render json: @pattern.to_json(only: [:id,:label, :file, :category_id, :category_name]) , status: :ok
     else

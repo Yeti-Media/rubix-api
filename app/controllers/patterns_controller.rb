@@ -22,7 +22,7 @@ class PatternsController < ApplicationController
   end
 
   def update
-    @pattern.attributes = params.require(:pattern).permit(:label, :file, :category)
+    @pattern.attributes = params.require(:pattern).permit(:label, :file, :category_id)
     notify(@pattern.save, "Pattern succesfully updated!", "Pattern update failed!")
   end
 
