@@ -19,7 +19,7 @@ class Pattern < ActiveRecord::Base
 
   def category_name=(value)
     if !category_id.present?
-      self.category_id = Category.find_by(title: value)
+      self.category = Category.find_by(title: value)
     end
   end
 
