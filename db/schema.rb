@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109225756) do
+ActiveRecord::Schema.define(version: 20140123214413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,27 @@ ActiveRecord::Schema.define(version: 20140109225756) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "descriptors", force: true do |t|
+    t.text     "body"
+    t.integer  "pattern_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "descriptors", ["pattern_id"], name: "index_descriptors_on_pattern_id", using: :btree
+
+  create_table "histrograms", force: true do |t|
+    t.integer  "pattern_id"
+    t.text     "gray"
+    t.text     "color"
+    t.text     "hsv"
+    t.text     "landscape"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "histrograms", ["pattern_id"], name: "index_histrograms_on_pattern_id", using: :btree
 
   create_table "patterns", force: true do |t|
     t.string   "file"

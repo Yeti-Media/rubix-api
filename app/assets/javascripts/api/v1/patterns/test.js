@@ -38,4 +38,14 @@ $(function () {
               });
             }
     });
+    $('#ocr_file').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+              var res = data.result;
+              var scenario= new Image();
+              scenario.src = res.scenario_url;
+              $('#detection').html(scenario);
+              $('#json_response').html(JSON.stringify(res));
+            }
+    });
 });

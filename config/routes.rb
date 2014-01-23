@@ -18,6 +18,7 @@ AnakinWebapp::Application.routes.draw do
     namespace :v1 do
       resource :categories
       namespace :patterns do
+        resource :ocr
         resource :feature_matcher
         resource :histogram
         resource :landscape, controller: 'landscape'
