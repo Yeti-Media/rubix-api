@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3">
     <h2>Edit <%= resource_name.to_s.humanize %></h2>
-    <h4 class="btn btn-primary">Access Token: <%= current_user.access_token %></h4>
+    <h4 class="alert alert-info"><b>Access Token:</b> <%= current_user.access_token %></h4>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, role: 'form'}) do |f| %>
       <%= devise_error_messages! %>
       <div class="form-group">

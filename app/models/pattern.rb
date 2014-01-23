@@ -3,6 +3,8 @@ class Pattern < ActiveRecord::Base
 
 	belongs_to :user
   belongs_to :category
+  has_one :histogram
+  has_one :matching
 
 	#validates :file_exist, :file_is_image
   validates :category_id, presence: true

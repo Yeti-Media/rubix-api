@@ -23,7 +23,7 @@ class Api::V1::PatternsController < Api::V1::BaseController
   def create
     @pattern = @user.patterns.new(params[:pattern])
     if @pattern.save
-      render json: @pattern.to_json(only: [:id,:label, :file, :category_id, :category]) , status: :ok
+      render json: @pattern.to_json(only: [:id,:label, :file, :category_id, :category_name]) , status: :ok
     else
       render json: {error: @pattern.errors.full_messages.to_sentence} , status: 422
     end
