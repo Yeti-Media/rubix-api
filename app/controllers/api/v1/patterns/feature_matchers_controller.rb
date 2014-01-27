@@ -24,7 +24,7 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
 
   def create
     scenario = create_scenario
-    matcher = Anakin::OCR.new(user: @user, scenario: scenario, flags: params)
+    matcher = Anakin::FeatureMatcher.new(user: @user, scenario: scenario, flags: params)
     begin
       @result = matcher.process!
       render json: @result
