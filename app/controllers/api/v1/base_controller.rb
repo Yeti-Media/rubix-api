@@ -8,7 +8,7 @@ class Api::V1::BaseController < ApplicationController
   def create_scenario
     if params[:file]
       attrs = {file: params[:file]}
-    elsif params[:url]
+    elsif params[:remote_file_url]
       attrs = {remote_file_url: params[:remote_file_url]}
     end
     Scenario.create(attrs)
