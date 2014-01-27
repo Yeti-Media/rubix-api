@@ -9,7 +9,7 @@ class Api::V1::BaseController < ApplicationController
     if params[:file]
       attrs = {file: params[:file]}
     elsif params[:url]
-      attrs = {remote_file_url: params[:url]}
+      attrs = {remote_file_url: params[:remote_file_url]}
     end
     Scenario.create(attrs)
   end
