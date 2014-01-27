@@ -10,7 +10,7 @@ class Api::V1::Patterns::OcrsController < Api::V1::BaseController
     EOS
   end
 
-  api :GET, "/api/v1/patterns/ocr", "endpoint for get results of OCR processing"
+  api :POST, "/api/v1/patterns/ocr", "endpoint for get results of OCR processing"
   param :file, File, desc: "Image file"
   param :remote_file_url, String, desc: "URL of an image file"
   param :rectangles, Array, desc: "Array of points. Example: [[x1,y1,x2,y2],..[x1,y1,x2,y2]]"

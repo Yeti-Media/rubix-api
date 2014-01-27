@@ -10,7 +10,7 @@ class Api::V1::Patterns::HistogramsController <  Api::V1::BaseController
     EOS
   end
 
-  api :GET, "/api/v1/patterns/histogram", "endpoint for get results of histogram comparison between an scenario and patterns"
+  api :POST, "/api/v1/patterns/histogram", "endpoint for get results of histogram comparison between an scenario and patterns"
   param :file, File, desc: "Image file"
   param :remote_file_url, String, desc: "URL of an image file"
   param :min , Integer, desc: "Minimum Percetange required"

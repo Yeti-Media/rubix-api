@@ -10,7 +10,7 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
     EOS
   end
 
-  api :GET, "/api/v1/patterns/feature_matcher", "endpoint for get results of feature matching between patterns and a scenario"
+  api :POST, "/api/v1/patterns/feature_matcher", "endpoint for get results of feature matching between patterns and a scenario"
   param :file, File, desc: "Image file"
   param :remote_file_url, String, desc: "URL of an image file"
   param :mma, Integer, desc: "Minimum Amount of matches"
