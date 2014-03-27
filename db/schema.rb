@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123214413) do
+ActiveRecord::Schema.define(version: 20140320225438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,23 +45,37 @@ ActiveRecord::Schema.define(version: 20140123214413) do
 
   create_table "patterns", force: true do |t|
     t.string   "file"
-    t.text     "label"
+    t.string   "label"
     t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "aid"
     t.integer  "category_id"
+    t.integer  "trainer_id"
+    t.integer  "position"
   end
 
   add_index "patterns", ["aid"], name: "index_patterns_on_aid", using: :btree
 
   create_table "scenarios", force: true do |t|
-    t.string   "file"
+    t.integer  "file"
     t.text     "result"
+    t.text     "descriptors"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "trainers", force: true do |t|
+    t.integer  "xml"
+    t.integer  "if_file"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "patterns_count", default: 0
+  end
+
+  add_index "trainers", ["user_id"], name: "index_trainers_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

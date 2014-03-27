@@ -1,8 +1,9 @@
 class CreateScenarios < ActiveRecord::Migration
   def change
     create_table :scenarios do |t|
-      t.string :file
+      t.column :file, :oid
       t.text :result
+      t.text :descriptors
       t.string :url
 
       t.timestamps

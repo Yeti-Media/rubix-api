@@ -5,8 +5,6 @@ class CreateHistrograms < ActiveRecord::Migration
       t.text :gray
       t.text :color
       t.text :hsv
-      t.text :landscape
-
       t.timestamps
     end
   end

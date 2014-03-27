@@ -23,9 +23,9 @@ class Api::V1::Patterns::LandscapeController <  Api::V1::BaseController
 
   def create
     scenario = create_scenario
-    matcher = Anakin::Landscape.new(user: @user, scenario: scenario, flags: params)
+    matcher = Anakin::Landscape.new
     begin
-      @result = matcher.process!
+      @result = matcher.landscape(user_id: @user.id, scenario_id: scenario_id, flags: params)
       render json: @result
     rescue Anakin::GeneralError => e
       render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou', log: e.message}, status: 500

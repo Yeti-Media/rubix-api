@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 
   has_many :patterns
+  has_many :scenarios
+  has_many :trainers
+
 
   before_create :generate_access_token
   # Include default devise modules. Others available are:

@@ -1,40 +1,66 @@
-set :application, "anakin"
-set :repository,  "git@github.com:Yeti-Media/anakin_app.git"
+require 'capistrano/rbenv'
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+# config valid only for Capistrano 3.1
+lock '3.1.0'
 
-role :web, "50.116.15.102"                          # Your HTTP server, Apache/etc
-role :app, "50.116.15.102"                          # This may be the same as your `Web` server
-role :db,  "50.116.15.102", :primary => true # This is where Rails migrations will run
+set :application, 'rubix_api'
+set :repo_url, 'git@github.com:Yeti-Media/anakin_app.git'
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.0.0-p451'
+set :rbenv_path , '~/.rbenv'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
+# Default branch is :master
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :user, "deploy"
-set :deploy_to, "/home/#{user}/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
-set :scm, "git"
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-ssh_options[:compression] = false
+# Default deploy_to directory is /var/www/my_app
+ set :deploy_to, '/home/deploy/rubix_api'
+
+# Default value for :scm is :git
+# set :scm, :git
+
+# Default value for :format is :pretty
+# set :format, :pretty
+
+# Default value for :log_level is :debug
+# set :log_level, :debug
+
+# Default value for :pty is false
+# set :pty, true
+
+# Default value for :linked_files is []
+# set :linked_files, %w{config/database.yml}
+
+# Default value for linked_dirs is []
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/database.yml bin/extractor bin/trainer}
+set :linked_dirs, %w{public/uploads public/assets}
 
 
-namespace :config do
-  desc "[internal] Updates the symlink for database.yml file to the just deployed release."
-  task :symlink, :except => { :no_release => true } do
-    run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
-    run "ln -nfs #{shared_path}/uploads #{latest_release}/public/uploads"
-    run "ln -nfs #{shared_path}/vendor/bundle #{latest_release}/vendor/bundle"
-    run "ln -nfs #{shared_path}/assets #{latest_release}/public/assets"
-    run "ln -nfs #{latest_release}/bin/anakin64 #{latest_release}/bin/anakin"
-  end
-end
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+# Default value for keep_releases is 5
+# set :keep_releases, 5
+
+set :ssh_options, {
+#    keys: %w(/home/rlisowski/.ssh/id_rsa),
+  forward_agent: true,
+  auth_methods: %w(publickey password)
+}
 
 namespace :deploy do
-  task :restart do
-    run "touch #{latest_release}/tmp/restart.txt"
-  end
-end
 
-after  "deploy", "config:symlink"
-after "deploy", "deploy:cleanup"
-after "deploy:cleanup", "deploy:restart"
+  desc 'Restart application'
+  task :restart do
+    on roles(:app, :db), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :publishing, :restart
+
+
+end

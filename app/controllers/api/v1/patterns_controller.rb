@@ -29,4 +29,12 @@ class Api::V1::PatternsController < Api::V1::BaseController
       render json: {error: @pattern.errors.full_messages.to_sentence} , status: 422
     end
   end
+
+  api :DELETE, "/api/v1/patterns/:id", "delete a pattern"
+  param :id, Integer, desc: "Pattern Id", required: true
+  def destroy
+    @pattern = @user.patterns.find(params[:id])
+    @pattern.destroy
+    render nothing: true
+  end
 end

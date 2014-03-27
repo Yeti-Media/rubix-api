@@ -3,7 +3,7 @@ class CreatePatterns < ActiveRecord::Migration
     create_table :patterns do |t|
       t.string :file
       t.string :label
-      t.string :user_id
+      t.integer :user_id
 
       t.timestamps
     end

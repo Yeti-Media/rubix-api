@@ -20,10 +20,10 @@ class Api::V1::Patterns::HistogramsController <  Api::V1::BaseController
 
   def create
     scenario = create_scenario
-    matcher = Anakin::Histogram.new(user: @user, scenario: scenario, flags: params)
+    matcher = Anakin::Histogram.new
     begin
-      @result = matcher.process!
-      render json: @result
+      @result = matcher.histogram(user_id: @user.id, scenario_id: scenario.id, flags: params)
+      render json: @result.compact
     rescue Anakin::GeneralError => e
       render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou', log: e.message}, status: 500
     end

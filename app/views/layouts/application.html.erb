@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="navbar navbar-inverse" role="navigation">
+  <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="/">Rubix</a>
@@ -22,8 +22,10 @@
           <% if user_signed_in? %>
             <li><%= link_to current_user.email, '/users/edit' %></li>
             <li class="dropdown">
-              <%= link_to "Patterns","#",  class: "dropdown-toggle", 'data-toggle' => "dropdown" %>
-              <b class="caret"></b>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Patterns
+                <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu">
                 <% Category.all.each do |c| %>
                   <li><%= link_to c.title.humanize , category_patterns_path(c) %></li>
@@ -31,12 +33,14 @@
               </ul>
             </li>
             <li class="dropdown">
-              <%= link_to "Console", '#', class: "dropdown-toggle", 'data-toggle' => "dropdown" %>
-              <b class="caret"></b>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Console
+                <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Matching", api_tests_matching_path %></li>
-                <li><%= link_to "Histogram", api_tests_histogram_path %></li>
-                <li><%= link_to "Landscape", api_tests_landscape_path %></li>
+                <!--<li><% link_to "Histogram", api_tests_histogram_path %></li>
+                <li><% link_to "Landscape", api_tests_landscape_path %></li>-->
                 <li><%= link_to "OCR", api_tests_ocr_path %></li>
               </ul>
             </li>

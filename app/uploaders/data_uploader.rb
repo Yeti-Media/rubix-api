@@ -1,15 +1,15 @@
 # encoding: utf-8
 
-class ScenarioUploader < CarrierWave::Uploader::Base
+class DataUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+  # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :postgresql_lo
   # storage :fog
-  process :convert_to_png
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -24,12 +24,6 @@ class ScenarioUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  def convert_to_png
-    manipulate! do |img|
-      img.format('png')
-      img
-    end
-  end
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
@@ -50,8 +44,8 @@ class ScenarioUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  def filename
-    "#{original_filename.split('.').first}.png"
-  end
+  # def filename
+  #   "something.jpg" if original_filename
+  # end
 
 end

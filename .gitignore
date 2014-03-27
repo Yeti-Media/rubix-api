@@ -27,6 +27,8 @@ config/database.yml
 /vendor/bundle
 
 bin/anakin
+bin/extractor
+bin/trainer
 
 # these should all be checked in to normalise the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset

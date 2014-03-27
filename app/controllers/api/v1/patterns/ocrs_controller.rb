@@ -17,10 +17,10 @@ class Api::V1::Patterns::OcrsController < Api::V1::BaseController
   example '{"values":[{"text":"this is \na\ntest"}],"scenario_url":"/uploads/scenario/file/171/test_ocr.png"}' 
 
   def create
-    scenario = create_scenario
-    matcher = Anakin::OCR.new(user: @user, scenario: scenario, flags: params)
+    scenario = create_scenario('ocr')
+    matcher = Anakin::OCR.new
     begin
-      @result = matcher.process!
+      @result = matcher.ocr(scenario_id: scenario.id, flags: params).first
       render json: @result
     rescue Anakin::GeneralError => e
       render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou', log: e.message}, status: 500

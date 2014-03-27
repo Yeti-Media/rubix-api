@@ -18,9 +18,8 @@ gem 'devise'
 
 # TODO: description for carrierwave
 gem 'carrierwave'
+gem 'carrierwave-postgresql', require: 'carrierwave/postgresql'
 
-# TODO: description for letter_opener
-gem 'letter_opener', :group => :development
 
 # used to generate thumb version for uploaded images
 gem 'mini_magick'
@@ -37,12 +36,24 @@ gem 'mixlib-shellout'
 #Config And Settings management
 gem 'settingslogic'
 
+#json parser and encoder
+gem 'yajl-ruby', require: 'yajl'
+
+#Queue job
+gem 'delayed_job'
+
+#cron Job
+gem 'whenever', :require => false
 
 
 #----TESTS GEMS----
 group :development, :test do
+  # TODO: description for letter_opener
+  gem 'letter_opener'
   # Deployment 
   gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', '~> 2.0'
 
   # TODO: description for rspec-rails
 	gem 'rspec-rails'

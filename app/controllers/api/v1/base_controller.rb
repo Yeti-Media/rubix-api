@@ -5,12 +5,13 @@ class Api::V1::BaseController < ApplicationController
 
   protected
 
-  def create_scenario
+  def create_scenario(category)
     if params[:file]
       attrs = {file: params[:file]}
     elsif params[:remote_file_url]
       attrs = {remote_file_url: params[:remote_file_url]}
     end
+    attrs[:category_id] = Category.find_by(title: category).id
     Scenario.create(attrs)
   end
 

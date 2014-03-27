@@ -5,7 +5,6 @@ class CreateCategories < ActiveRecord::Migration
 
       t.timestamps
     end
-    remove_column :patterns, :category
     add_column :patterns, :category_id, :integer
   end
 end

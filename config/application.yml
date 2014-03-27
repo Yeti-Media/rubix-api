@@ -2,9 +2,11 @@
 defaults: &defaults
   patterns:
     categories:
-      - comparison
       - matching
-      - ocr
+  anakin:
+    load_balancer:
+      host: 127.0.0.1
+      port: 8080
 
 development:
   <<: *defaults

@@ -1,17 +1,7 @@
 module Anakin
   class Comparison < Base
-
-    protected
-    
-
-    def build_specific_args
-      args = ""
-      args += " -min #{@options[:flags][:min]} " if @options[:flags][:min].present?
-      args
-    end
-
-    def pattern_dir
-      File.join(Rails.root, "public", "uploads", "pattern", @options[:user].id.to_s, 'comparison')
+    def comparison(body)
+      perform(body)
     end
   end
 end
