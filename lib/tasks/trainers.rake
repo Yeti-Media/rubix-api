@@ -3,7 +3,7 @@ namespace :trainers do
   task update: :environment do
     User.all.each do |user|
       if trainer = user.trainers.last
-        do_train = user.patterns.where("patterns.created_at > ?" trainer.updated_at).count
+        do_train = user.patterns.where("patterns.created_at > ?" , trainer.updated_at).count
       else
         do_train = 1
       end 
