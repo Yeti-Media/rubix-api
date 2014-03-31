@@ -46,7 +46,7 @@ class Pattern < ActiveRecord::Base
     when 'matching'
       extractor = Anakin::Extractor.new(self.category_name, self)
       body = extractor.extract!
-      self.pattern.create_descriptor!(body: body['data'])
+      self.create_descriptor!(body: body['data'])
     end
   end
 end

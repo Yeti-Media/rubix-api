@@ -18,7 +18,7 @@ module Anakin
     def extract
       extractor_command = File.join(Rails.root, 'bin', 'extractor')
       Rails.logger.info("==== EXTRACTOR RUNNING ====")
-      command = "#{extractor_command} -#{self.mode} -iFile #{self.pattern.file.path} -toJson"
+      command = "#{extractor_command} -#{self.mode} -iFile #{self.pattern.file.path} -toJson -xml"
       Rails.logger.info(command)
       shell = Mixlib::ShellOut.new(command)
       shell.run_command

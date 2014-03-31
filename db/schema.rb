@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140320225438) do
   end
 
   create_table "descriptors", force: true do |t|
-    t.text     "body"
+    t.xml      "body"
     t.integer  "pattern_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -67,12 +67,11 @@ ActiveRecord::Schema.define(version: 20140320225438) do
   end
 
   create_table "trainers", force: true do |t|
-    t.integer  "xml"
+    t.integer  "xml_file"
     t.integer  "if_file"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "patterns_count", default: 0
   end
 
   add_index "trainers", ["user_id"], name: "index_trainers_on_user_id", using: :btree

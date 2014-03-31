@@ -1,7 +1,7 @@
 class CreateDescriptors < ActiveRecord::Migration
   def change
     create_table :descriptors do |t|
-      t.text :body
+      t.xml :body
       t.belongs_to :pattern, index: true
 
       t.timestamps

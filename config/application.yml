@@ -16,3 +16,7 @@ test:
 
 production:
   <<: *defaults
+  anakin:
+    load_balancer:
+      host: 66.175.218.188 
+      port: 8080
