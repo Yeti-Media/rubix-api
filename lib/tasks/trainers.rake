@@ -9,7 +9,7 @@ namespace :trainers do
       end 
       if do_train > 0 
         trainer = Anakin::Trainer.new(user)
-        trailer.delay.train!
+        trainer.delay.train!
       end
     end
   end
