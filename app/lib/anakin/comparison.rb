@@ -1,5 +1,5 @@
 module Anakin
-  class Comparison < Base
+  class Comparison < Client
     def comparison(body)
       perform(body)
     end

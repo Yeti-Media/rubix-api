@@ -17,12 +17,8 @@ module Anakin
       trainer_command = File.join(Rails.root, 'bin', 'trainer')
       filename = SecureRandom.base64(25).tr('+/=lIO0', 'pqrsxyz')
       command = "#{trainer_command} -user #{self.user.id} -saveToFile #{Rails.root}/tmp/ #{filename}"
-      Rails.logger.info("===== Trainer Starts =====")
       shell = Mixlib::ShellOut.new(command)
-      Rails.logger.info(command)
       shell.run_command
-      Rails.logger.info(shell.stdout)
-      Rails.logger.info(shell.stderr)
       filename
     end
 

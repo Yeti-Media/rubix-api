@@ -7,6 +7,7 @@
 #role :app, %w{deploy@example.com}
 #role :web, %w{deploy@example.com}
 role :db,  %w{deploy@li83-207.members.linode.com}
+role :app, %w{deploy@li485-102.members.linode.com}
 
 # Extended Server Syntax
 # ======================
@@ -16,6 +17,7 @@ role :db,  %w{deploy@li83-207.members.linode.com}
 # extended properties on the server.
 #server '', user: 'deploy', roles: %w{app}
 server 'li83-207.members.linode.com', user: 'deploy', roles: %w{db}
+server 'li485-102.members.linode.com', user: 'deploy', roles: %w{app}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
