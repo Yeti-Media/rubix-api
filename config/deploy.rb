@@ -34,7 +34,7 @@ set :rbenv_roles, :all # default value
 
 # Default value for linked_dirs is []
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-set :linked_files, %w{config/database.yml bin/extractor bin/trainer}
+set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{public/uploads public/assets tmp}
 
 
@@ -57,6 +57,8 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       execute :touch, release_path.join('tmp/restart.txt')
+      execute :ln, "-s #{release_path.join('bin/extractor64')} #{release_path.join('bin/extractor')}"
+      execute :ln, "-s #{release_path.join('bin/trainer64')} #{release_path.join('bin/trainer')}"
     end
   end
 

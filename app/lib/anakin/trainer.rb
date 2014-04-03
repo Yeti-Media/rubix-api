@@ -17,6 +17,7 @@ module Anakin
       trainer_command = File.join(Rails.root, 'bin', 'trainer')
       filename = SecureRandom.base64(25).tr('+/=lIO0', 'pqrsxyz')
       command = "#{trainer_command} -user #{self.user.id} -saveToFile #{Rails.root}/tmp/ #{filename}"
+      Rails.logger.info(command)
       shell = Mixlib::ShellOut.new(command)
       shell.run_command
       filename
@@ -35,7 +36,7 @@ module Anakin
         if new_trainer
           lb.add_indexes({user_id: user.id, indexes: [trainer.id]})
         else
-          lb.update_index({index_id: trainer.id})
+          lb.update_index({indexes: [trainer.id]})
         end
         true
       else
@@ -43,4 +44,4 @@ module Anakin
       end
     end
   end
-end
+  end
