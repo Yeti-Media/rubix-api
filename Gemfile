@@ -45,6 +45,10 @@ gem 'delayed_job'
 #cron Job
 gem 'whenever', :require => false
 
+gem "faraday"
+
+gem 'acts_as_list'
+
 
 #----TESTS GEMS----
 group :development, :test do

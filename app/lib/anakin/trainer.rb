@@ -28,13 +28,16 @@ module Anakin
       if_file = "#{Rails.root}/tmp/#{filename}.if"
       xml_file = "#{Rails.root}/tmp/#{filename}.xml"
       trainer = user.trainers.new
-      unless new_trainer = (user.trainers.count > 0)
+      unless new_trainer = (user.trainers.count == 0)
         trainer = user.trainers.first
       end
       trainer.attributes = {if_file: File.open(if_file), xml_file: File.open(xml_file)}
       if trainer.save
+        user.patterns.order('patterns.id asc').include(:descriptor).each_with_index do |pattern, index|
+          pattern.update_attributes(position: index, trainer_id: trainer.id)
+        end
         if new_trainer
-          lb.add_indexes({user_id: user.id, indexes: [trainer.id]})
+          lb.add_indexes({user_id: user.id, indexes: [trainer.id], category: 'matching'})
         else
           lb.update_index({indexes: [trainer.id]})
         end

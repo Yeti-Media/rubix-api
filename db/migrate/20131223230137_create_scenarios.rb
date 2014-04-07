@@ -3,9 +3,9 @@ class CreateScenarios < ActiveRecord::Migration
     create_table :scenarios do |t|
       t.column :file, :oid
       t.text :result
-      t.text :descriptors
+      t.xml :descriptors
       t.string :url
-
+      t.integer :category_id
       t.timestamps
     end
   end

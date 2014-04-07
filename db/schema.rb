@@ -74,8 +74,9 @@ ActiveRecord::Schema.define(version: 20140320234015) do
   create_table "scenarios", force: true do |t|
     t.integer  "file"
     t.text     "result"
-    t.text     "descriptors"
+    t.xml      "descriptors"
     t.string   "url"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

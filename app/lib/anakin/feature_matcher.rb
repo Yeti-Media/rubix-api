@@ -14,7 +14,7 @@ module Anakin
     end
 
     def matching(user, body)
-      body.merge!(action: 'matching', indexes: user.trainers.ids)
+      body.merge!(action: 'matching', indexes: user.trainers.ids, category: 'matching')
       perform(body)
     end
 

@@ -12,7 +12,7 @@ module Anakin
       validate
     end
 
-    def request(body)
+    def perform(body)
       response = client.post do |req|
         req.url '/'
         req.headers['Content-Type'] = 'application/json'
