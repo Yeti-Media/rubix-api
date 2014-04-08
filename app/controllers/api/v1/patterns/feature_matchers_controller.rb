@@ -26,8 +26,8 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
     scenario = create_scenario('matching')
     matcher = Anakin::FeatureMatcher.new
     begin
-      @result = matcher.matching(@user, scenario_id: scenario.id)
-      render json: @result.compact
+      @result = matcher.matching(@user, scenario: scenario.id)
+      render json: @result
     rescue Anakin::GeneralError => e
       render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou', log: e.message.gsub(/opencv/, 'anakin')}, status: 500
     end

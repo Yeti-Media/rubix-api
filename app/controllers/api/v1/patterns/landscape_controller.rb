@@ -1,6 +1,7 @@
 class Api::V1::Patterns::LandscapeController <  Api::V1::BaseController
 
-  resource_description do
+=begin
+resource_description do
     resource_id "Landscape Comparison"
     formats ["JSON"]
     param :access_token, String, desc: "Current user's access token", required: true
@@ -20,6 +21,7 @@ class Api::V1::Patterns::LandscapeController <  Api::V1::BaseController
                        "keypoints":[{"angle":341.342712402344,
                                      "pos":{"x":100.40860748291,"y":112.718078613281},
                                      "response":23270.0703125,"size":21},...]}' 
+=end
 
   def create
     scenario = create_scenario

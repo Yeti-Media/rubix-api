@@ -1,6 +1,7 @@
 class Api::V1::Patterns::HistogramsController <  Api::V1::BaseController
 
-  resource_description do
+=begin
+resource_description do
     resource_id "Histogram Comparison"
     formats ["JSON"]
     param :access_token, String, desc: "Current user's access token", required: true
@@ -17,6 +18,7 @@ class Api::V1::Patterns::HistogramsController <  Api::V1::BaseController
   param :method , String, desc: "Comparison Method: correlative or intersection method. Values: 'corr' | 'inter'"
   param :matching , String, desc: "Matching Type: 'gray' , 'color' or 'HSV' matching types. If this parameter is not provided, the app will perform the three matches and will provide the highest percentage"
   example '{"matches":[{"pattern": "internalUniqueID","percentage": 99,"label": "woods1", pattern_url: "/path/to/pattern/image",...]}' 
+=end
 
   def create
     scenario = create_scenario

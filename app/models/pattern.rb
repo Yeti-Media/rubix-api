@@ -4,7 +4,7 @@ class Pattern < ActiveRecord::Base
 
 	belongs_to :user
   belongs_to :category
-  belongs_to :trainer, counter_cache: true
+  #belongs_to :trainer, counter_cache: true
   has_one :histogram
   has_one :descriptor
 

@@ -3,6 +3,8 @@ defaults: &defaults
   patterns:
     categories:
       - matching
+    limit:
+      1000
   anakin:
     load_balancer:
       host: 127.0.0.1

@@ -20,6 +20,10 @@ module Anakin
       Rails.logger.info(command)
       shell = Mixlib::ShellOut.new(command)
       shell.run_command
+      Rails.logger.info "COMMAND"
+      Rails.logger.info command 
+      Rails.logger.info "OUTPUT"
+      Rails.logger.info shell.stderr
       filename
     end
 
@@ -33,9 +37,10 @@ module Anakin
       end
       trainer.attributes = {if_file: File.open(if_file), xml_file: File.open(xml_file)}
       if trainer.save
-        user.patterns.order('patterns.id asc').include(:descriptor).each_with_index do |pattern, index|
+        user.patterns.order('patterns.id asc').each_with_index do |pattern, index|
           pattern.update_attributes(position: index, trainer_id: trainer.id)
         end
+        Rails.logger.info "SAVED"
         if new_trainer
           lb.add_indexes({user_id: user.id, indexes: [trainer.id], category: 'matching'})
         else
@@ -43,6 +48,7 @@ module Anakin
         end
         true
       else
+        Rails.logger.info "NOT SAVED"
         false
       end
     end
