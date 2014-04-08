@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def check_pattern_rate_limit
     c_user = @user || current_user
-    pattern_count = c_user.pattern.count
+    pattern_count = c_user.patterns.count
     if pattern_count >= Settings.patterns.limit
       render json: {error: "Pattern upload limit reached"}, status: 422
       return false
