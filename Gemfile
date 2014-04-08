@@ -19,6 +19,7 @@ gem 'devise'
 # TODO: description for carrierwave
 gem 'carrierwave'
 gem 'carrierwave-postgresql', require: 'carrierwave/postgresql'
+gem "fog"
 
 
 # used to generate thumb version for uploaded images
