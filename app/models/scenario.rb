@@ -5,7 +5,7 @@ class Scenario < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
-  before_create :extract_information
+  after_commit :extract_information
 
   def category_name
     category.title
