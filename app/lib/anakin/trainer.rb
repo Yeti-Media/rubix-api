@@ -38,7 +38,9 @@ module Anakin
       trainer.attributes = {if_file: File.open(if_file), xml_file: File.open(xml_file)}
       if trainer.save
         user.patterns.order('patterns.id asc').each_with_index do |pattern, index|
-          pattern.update_attributes(position: index, trainer_id: trainer.id)
+          raw_parameters = {position: index, trainer_id: trainer.id}
+          params = ActionController::Parameters.new(raw_parameters)
+          pattern.update_attributes(params.permit(:position, :trainer_id))
         end
         Rails.logger.info "SAVED"
         if new_trainer
