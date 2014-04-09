@@ -4,12 +4,12 @@ $(function () {
         done: function (e, data) {
               var res = data.result;
               var scenario= new Image();
-              scenario.src = res.scenario_url;
+              scenario.src = res.scenario.url;
               $('#matches').html('');
               $('#detection').html(scenario);
               $('#json_response').html(JSON.stringify(res));
               prettyPrint();
-              $.each(res, function(i, value){
+              $.each(res.values, function(i, value){
                 $('#matches').append("<div><img src='"+ value.url +"' class='img-thumbnail' /></div>");
                 var label_link = $('<a class="label_link">*</a>');
                 label_link.css({position: 'absolute', top: value.center.y, left: value.center.x, background: 'white', border: '3px solid blue', 'border-radius': '5px'});

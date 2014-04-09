@@ -19,7 +19,7 @@ module Anakin
       Rails.logger.info("MATCHING ANAKIN RESULTS")
       Rails.logger.info(results.inspect)
       if results.is_a?(Array)
-        results = refine_result(results)
+        results = refine_result(results, body)
       end
       results
     end
@@ -27,7 +27,7 @@ module Anakin
 
     private
 
-    def refine_result(results)
+    def refine_result(results, body)
   #    [{"category":"PATTERN","requestID":"368254","values":
   #      [{"label":"22","values":
   #        [{"center":{"x":282.621887207031,"y":268.956695556641},"keypoints":[],"label":"8"}]}]}]
@@ -44,7 +44,8 @@ module Anakin
           end
         end
       end
-      refined_results
+      scenario = Scenario.find(body[:scenario])
+      {scenario: {url: scenario.file.url } , values: refined_results}
     end
 
     def validate
