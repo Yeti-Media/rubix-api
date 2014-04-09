@@ -1,42 +1,30 @@
-<h1>Api Tests</h1>
+<h1>Api Tests For Pattern Matching</h1>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-4">
+    <h2> Choose your Input</h2>
     <%= form_tag api_v1_patterns_feature_matcher_path, method: 'POST', target: 'test_frame', multipart: true, role: 'form' do %>
       <%= hidden_field_tag :access_token, current_user.access_token %>
       <div class="form-group">
         <%= label_tag :file, "Select a file" %>
         <%= file_field_tag :file, id: 'feature_file' %>
       </div>
-      <div class="form-group">
-        <%= label_tag :mma, "Minimum Matches" %>
-        <%= number_field_tag :mma %>
-      </div>
-      <div class="form-group">
-        <%= label_tag :mr, "Minimum Ratio" %>
-        <%= text_field_tag :mr %>
-      </div>
-
-      <div class="form-group">
-        <%= submit_tag 'Create', class: 'btn btn-default' %>
-      </div>
     <% end %>
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-4">
     <h2> JSON response</h2>
-    <div id="json_response" style="overflow:auto;height:400px;">
+    <pre class="prettyprint" id="json_response" >
       
-    </div>
+    </pre>
   </div>
-</div>
-
-<div class="row">
-  <h1>Results:</h1>
-  <div class="col-xs-6 matches">
+  <div class="col-xs-4 matches">
      <h2>Matches</h2>
      <div id="matches">
      </div>
   </div>
-  <div class="col-xs-6 detection">
+</div>
+
+<div class="row">
+  <div class="col-xs-4 detection">
     <h2>Detection</h2>
     <div id="detection" style="position:relative;">
     </div>

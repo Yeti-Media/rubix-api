@@ -8,7 +8,7 @@ class ScenarioUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   storage :fog
-  process scale: [1024,1024]
+  process resize_to_fit: [1024,1024], if: :should_be_resized?
   process :convert_to_png
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -52,6 +52,14 @@ class ScenarioUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
     "#{original_filename.split('.').first}.png"
+  end
+
+  protected
+
+  def should_be_resized?(pic)
+    image = MiniMagick::Image.open(pic.path)
+    return image[:width] > 1024 || image[:height] > 1024 ||
+           model.category.try(:title) != "ocr"
   end
 
 end

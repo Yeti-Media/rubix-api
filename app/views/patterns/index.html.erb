@@ -15,11 +15,15 @@
 </div>
 <div class="row">
   <% @patterns.each do |pattern| %>
-    <div class="col-xs-3" style="height: 280px">
+    <div class="col-xs-3">
+      <div class="col-xs-12" >
        <%= link_to edit_pattern_path(pattern) do %>
          <%= image_tag pattern.file.url, width: 260, class: 'img-thumbnail' %>
        <% end %>
-       <%= link_to 'Delete', pattern_path(pattern), :method => 'delete', :confirm => 'Are you sure?', class: "btn btn-danger" %>
+      </div>
+      <div class="col-xs-12 col-xs-offset-4" >
+        <%= link_to 'Delete', pattern_path(pattern), :method => 'delete', :confirm => 'Are you sure?', class: "btn btn-danger" %>
+      </div> 
     </div>
   <% end %>
 </div>

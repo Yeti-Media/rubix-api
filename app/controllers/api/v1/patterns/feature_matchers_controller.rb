@@ -15,8 +15,7 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
   param :remote_file_url, String, desc: "URL of an image file"
   param :mma, Integer, desc: "Minimum Amount of matches"
   param :mr, Float, desc: "Minimum Ratio"
-  example '{"label":"scene",
-            "values":[{"center":{"x":102.526206970215,
+  example '[{"center":{"x":102.526206970215,
                                  "y":94.42138671875},
                        "keypoints":[{"angle":341.342712402344,
                                      "pos":{"x":100.40860748291,"y":112.718078613281},
