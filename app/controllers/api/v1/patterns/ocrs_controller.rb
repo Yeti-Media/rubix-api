@@ -14,7 +14,7 @@ class Api::V1::Patterns::OcrsController < Api::V1::BaseController
   param :file, File, desc: "Image file"
   param :remote_file_url, String, desc: "URL of an image file"
   param :rectangles, Array, desc: "Array of points. Example: [[x1,y1,x2,y2],..[x1,y1,x2,y2]]"
-  example '{"values":[{"text":"this is \na\ntest"}],"scenario_url":"/uploads/scenario/file/171/test_ocr.png"}' 
+  example '{"values":[{"text":"this is \na\ntest"}]}' 
 
   def create
     scenario = create_scenario('ocr')

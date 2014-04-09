@@ -15,11 +15,12 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
   param :remote_file_url, String, desc: "URL of an image file"
   param :mma, Integer, desc: "Minimum Amount of matches"
   param :mr, Float, desc: "Minimum Ratio"
-  example '[{"center":{"x":102.526206970215,
+  example '[{"scenario": {"url": "/path/to/scenario"},
+             "values":[{"center":{"x":102.526206970215,
                                  "y":94.42138671875},
-                       "keypoints":[{"angle":341.342712402344,
-                                     "pos":{"x":100.40860748291,"y":112.718078613281},
-                                     "response":23270.0703125,"size":21},...]}' 
+                        "keypoints":[...]}
+                       ]
+            }..]' 
 
   def create
     scenario = create_scenario('matching')
