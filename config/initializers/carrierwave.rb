@@ -6,7 +6,7 @@ CarrierWave.configure do |config|
     :path_style            => true
   }
   config.fog_directory  = 'assets.rubix.io'                     # required
-  config.fog_public     = false    
+  config.fog_public     = true 
   config.asset_host = "//assets.rubix.io.s3.amazonaws.com" 
   config.fog_authenticated_url_expiration = 600                              # optional, defaults to true
   config.fog_attributes = {'x-amz-server-side-encryption' => 'AES256','Cache-Control'=>'max-age=315576000'} 
