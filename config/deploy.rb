@@ -59,6 +59,7 @@ namespace :deploy do
       execute :touch, release_path.join('tmp/restart.txt')
       execute :ln, "-s #{release_path.join('bin/extractor64')} #{release_path.join('bin/extractor')}"
       execute :ln, "-s #{release_path.join('bin/trainer64')} #{release_path.join('bin/trainer')}"
+      execute :ln, "-s #{release_path.join('bin/anakin64')} #{release_path.join('bin/anakin')}"
     end
   end
 
