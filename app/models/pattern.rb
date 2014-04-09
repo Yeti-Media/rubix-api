@@ -29,10 +29,12 @@ class Pattern < ActiveRecord::Base
   private
 
   def add_aid
-    aid_valid = false
-    while !aid_valid
-      self.aid = SecureRandom.base64(25).tr('+/=lIO0', 'pqrsxyz')
-      aid_valid = valid_attribute?(:aid)
+    if new_record?
+      aid_valid = false
+      while !aid_valid
+        self.aid = SecureRandom.base64(25).tr('+/=lIO0', 'pqrsxyz')
+        aid_valid = valid_attribute?(:aid)
+      end
     end
   end
 
