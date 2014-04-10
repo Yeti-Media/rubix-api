@@ -11,7 +11,16 @@ class Api::V1::PatternsController < Api::V1::BaseController
     EOS
   end
 
-  api :GET, "/api/v1/patterns", "Add a new pattern to the training set"
+  api :POST, "/api/v1/patterns", "List patterns (25 items per page)"
+  param :page, Integer, desc: "page number"
+  example '[{"id": 123, "label": "abc123", "category_id": 1, "":"http://server.example/path/to/file"},..]'
+
+  def index
+    @patterns = @user.patterns.page(params[:page]).per(25)
+    render json: @patterns.to_json(only: [:id,:label, :file, :category_id, :category_name]) , status: :ok
+  end
+
+  api :POST, "/api/v1/patterns", "Add a new pattern to the training set"
   param :pattern, Hash do
     param :file, File, desc: "Image file", required: true
     param :remote_file_url, String, desc: "Image url", required: true
