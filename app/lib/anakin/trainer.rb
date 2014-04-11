@@ -22,8 +22,10 @@ module Anakin
       shell.run_command
       Rails.logger.info "COMMAND"
       Rails.logger.info command 
-      Rails.logger.info "OUTPUT"
+      Rails.logger.info "OUTPUT ERR"
       Rails.logger.info shell.stderr
+      Rails.logger.info "OUTPUT STD"
+      Rails.logger.info shell.stdout
       filename
     end
 
