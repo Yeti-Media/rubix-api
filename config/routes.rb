@@ -20,7 +20,7 @@ AnakinWebapp::Application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      resource :categories
+      resources :categories
       namespace :patterns do
         resource :ocr
         resource :feature_matcher
