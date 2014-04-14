@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    3scale_client (2.3.4)
+      nokogiri
     actionmailer (4.0.2)
       actionpack (= 4.0.2)
       mail (~> 2.5.4)
@@ -236,6 +238,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  3scale_client
   acts_as_list
   apipie-rails
   bootstrap-sass (~> 3.0.3.0)

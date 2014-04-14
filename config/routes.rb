@@ -13,6 +13,10 @@ AnakinWebapp::Application.routes.draw do
     resource :histogram
     resource :ocr
   end
+
+  namespace :users do
+    resource :threescale, controller: 'threescale'
+  end
   
   namespace :api do
     namespace :v1 do

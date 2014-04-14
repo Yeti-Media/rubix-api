@@ -1,6 +1,8 @@
 class Api::V1::BaseController < ApplicationController
+  include Controllers::Authentication
+
   before_filter :cors_set_access_control_headers
-  before_filter :authenticate_with_token!
+  before_filter :authenticate_api_user!
   protect_from_forgery with: :null_session
 
   protected
@@ -15,16 +17,6 @@ class Api::V1::BaseController < ApplicationController
     params = ActionController::Parameters.new(attrs)
     Scenario.create(params.permit(:file, :remote_file_url,:category_id))
   end
-
-  private
-
-
-  def authenticate_with_token!
-    unless @user = User.find_by_access_token(params[:access_token])
-      render json: {error: 'Not Authorized'}, status: 401
-    end
-  end
-  
 
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'

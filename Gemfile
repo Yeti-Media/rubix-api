@@ -40,6 +40,9 @@ gem 'settingslogic'
 #json parser and encoder
 gem 'yajl-ruby', require: 'yajl'
 
+#3scale integration
+gem "3scale_client"
+
 #Queue job
 gem 'delayed_job'
 
