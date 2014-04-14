@@ -13,10 +13,12 @@ class Api::V1::PatternsController < Api::V1::BaseController
 
   api :POST, "/api/v1/patterns", "List patterns (25 items per page)"
   param :page, Integer, desc: "page number"
-  example '[{"id": 123, "label": "abc123", "category_id": 1, "":"http://server.example/path/to/file"},..]'
+  example '[{"id": 123, "label": "abc123", "category_id": 1, "file":"http://server.example/path/to/file"},..]'
 
   def index
-    @patterns = @user.patterns.page(params[:page]).per(25)
+    @patterns = @user.patterns
+    @patterns = @patterns.where(category_id: params[:category_id]) if params[:category_id]
+    @patterns = @patterns.page(params[:page]).per(25)
     render json: @patterns.to_json(only: [:id,:label, :file, :category_id, :category_name]) , status: :ok
   end
 

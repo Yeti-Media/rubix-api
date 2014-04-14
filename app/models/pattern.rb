@@ -14,7 +14,7 @@ class Pattern < ActiveRecord::Base
   validates :aid, uniqueness: true
 
   after_initialize :add_aid
-  after_commit :extract_information
+  before_create :extract_information
 
   def category_name
     category.title
