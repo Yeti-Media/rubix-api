@@ -48,7 +48,7 @@ module Anakin
         if new_trainer
           lb.add_indexes({user_id: user.id, indexes: [trainer.id], category: 'matching'})
         else
-          lb.update_index({indexes: [trainer.id]})
+          lb.update_indexes({indexes: [trainer.id]})
         end
         true
       else
