@@ -30,6 +30,9 @@ AnakinWebapp::Application.routes.draw do
       resources :patterns do
         resources :scenarios
       end
+      namespace :trainers do
+        resource :matching
+      end
     end
   end
 
