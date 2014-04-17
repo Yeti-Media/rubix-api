@@ -6,7 +6,7 @@ module Anakin
     end
 
     def update_indexes(body)
-      perform(body.merge(action: 'update_indexes'))
+      perform(body.merge(action: 'update_index'))
     end
 
     def delete_index(body)
