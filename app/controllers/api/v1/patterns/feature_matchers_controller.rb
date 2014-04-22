@@ -23,11 +23,14 @@ class Api::V1::Patterns::FeatureMatchersController < Api::V1::BaseController
             }..]' 
 
   def create
-    scenario = create_scenario('matching')
-    matcher = Anakin::FeatureMatcher.new
     begin
-      @result = matcher.matching(@user, scenario: scenario.id)
-      render json: @result
+      if scenario = create_scenario('matching')
+        matcher = Anakin::FeatureMatcher.new
+        @result = matcher.matching(@user, scenario: scenario.id)
+        render json: @result
+      else
+        render json: {error: "Scenario not provided"}, status: :bad_request
+      end
     rescue Anakin::GeneralError => e
       render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou', log: e.message.gsub(/opencv/, 'anakin')}, status: 500
     end

@@ -8,13 +8,12 @@ class Api::V1::BaseController < ApplicationController
   protected
 
   def create_scenario(category)
-    if params[:file]
+    if params[:file].present?
       attrs = {file: params[:file]}
-    elsif params[:remote_file_url]
+    elsif params[:remote_file_url].present?
       attrs = {remote_file_url: params[:remote_file_url]}
     else
-      render json: {error: "Scenario not provided"}, status: :bad_request
-      return
+      return false
     end
     attrs[:category_id] = Category.find_by(title: category).id
     params = ActionController::Parameters.new(attrs)
