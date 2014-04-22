@@ -1,14 +1,19 @@
 module Anakin
   class Trainer
 
-    attr_accessor :user
+    attr_accessor :user, :error
 
     def initialize(user)
       self.user = user
     end
 
     def train!
-      save(train)
+      begin
+        save(train)
+      rescue Errno::ENOENT => e
+        Rollbar.report_exception(e, {user_id: self.user.id})
+        return false
+      end
     end
 
     private

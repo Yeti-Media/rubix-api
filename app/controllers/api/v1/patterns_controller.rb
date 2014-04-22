@@ -34,7 +34,7 @@ class Api::V1::PatternsController < Api::V1::BaseController
  
 
   def create
-    @pattern = @user.patterns.new(params[:pattern].permit(:label, :file, :remote_file_url, :category_name, :category_id))
+    @pattern = @user.patterns.new(pattern_params)
     if @pattern.save
       render json: @pattern.to_json(only: [:id,:label, :file, :category_id, :category_name]) , status: :ok
     else
@@ -48,5 +48,11 @@ class Api::V1::PatternsController < Api::V1::BaseController
     @pattern = @user.patterns.find(params[:id])
     @pattern.destroy
     render nothing: true
+  end
+
+  private
+
+  def pattern_params
+    params.require(:pattern).permit(:label, :file, :remote_file_url, :category_name, :category_id)
   end
 end
