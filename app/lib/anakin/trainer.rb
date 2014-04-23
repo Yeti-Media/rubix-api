@@ -11,7 +11,7 @@ module Anakin
       begin
         save(train)
       rescue Errno::ENOENT => e
-        Rollbar.report_exception(e, {user_id: self.user.id})
+        Rollbar.report_exception(e, {user_id: self.user.id, error: self.error})
         return false
       end
     end
@@ -22,15 +22,9 @@ module Anakin
       trainer_command = File.join(Rails.root, 'bin', 'trainer')
       filename = SecureRandom.base64(25).tr('+/=lIO0', 'pqrsxyz')
       command = "#{trainer_command} -user #{self.user.id} -saveToFile #{Rails.root}/tmp/ #{filename}"
-      Rails.logger.info(command)
       shell = Mixlib::ShellOut.new(command)
       shell.run_command
-      Rails.logger.info "COMMAND"
-      Rails.logger.info command 
-      Rails.logger.info "OUTPUT ERR"
-      Rails.logger.info shell.stderr
-      Rails.logger.info "OUTPUT STD"
-      Rails.logger.info shell.stdout
+      self.error = shell.stderr
       filename
     end
 
