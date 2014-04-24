@@ -51,7 +51,11 @@ class AssetUploader < CarrierWave::Uploader::Base
   protected
 
   def should_be_resized?(pic)
-    image = MiniMagick::Image.open(pic.path)
-    return image[:width] > 1024 || image[:height] > 1024
+    if @file
+      img = MiniMagick::Image.open(@file.file)
+      return img[:width] > 1024 || img[:height] > 1024
+    else
+      return false
+    end
   end
 end
