@@ -22,7 +22,7 @@ module Anakin
       trainer_command = File.join(Rails.root, 'bin', 'trainer')
       filename = SecureRandom.base64(25).tr('+/=lIO0', 'pqrsxyz')
       command = "#{trainer_command} -user #{self.user.id} -saveToFile #{Rails.root}/tmp/ #{filename}"
-      shell = Mixlib::ShellOut.new(command)
+      shell = Mixlib::ShellOut.new(command, {timeout: 1200})
       shell.run_command
       self.error = shell.stderr
       filename
