@@ -18,7 +18,7 @@ class PatternsController < ApplicationController
   end
 
   def create
-    @pattern = current_user.patterns.new(params.require(:pattern).permit(:label, :file, :category_id))
+    @pattern = current_user.patterns.new(pattern_params)
     notify(@pattern.save, "Pattern succesfully created!", "Pattern creation failed!")
   end
 
@@ -51,6 +51,10 @@ class PatternsController < ApplicationController
       flash[:error] = msgBad
       render :new
     end
+  end
+
+  def pattern_params
+    params.require(:pattern).permit(:label, :file, :category_id)
   end
 
 end

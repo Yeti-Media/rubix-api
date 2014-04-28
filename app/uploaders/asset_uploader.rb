@@ -8,7 +8,7 @@ class AssetUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   storage :fog
-  process resize_to_fit: [1024,1024], if: :should_be_resized?
+  process resize_to_fit: [600,600], if: :should_be_resized?
   process :convert_to_png
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
