@@ -1,4 +1,6 @@
 AnakinWebapp::Application.routes.draw do
+  match '/*path' => 'application#options', :via => :options
+
   devise_for :users
   apipie
 

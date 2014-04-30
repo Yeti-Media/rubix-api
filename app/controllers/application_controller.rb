@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 
 	before_filter :configure_devise_params, if: :devise_controller?
+
+  def options 
+    render :text => '', :content_type => 'text/plain'
+  end
   
 	private
   
