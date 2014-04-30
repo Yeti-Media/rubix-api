@@ -53,6 +53,8 @@ gem "faraday"
 
 gem 'acts_as_list'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 
 #----TESTS GEMS----
 group :development, :test do
