@@ -6,7 +6,7 @@ module Anakin
     end
 
     def update_indexes(body)
-      perform(body.merge(action: 'update_index'))
+      perform(body.merge(action: 'update_indexes'))
     end
 
     def delete_index(body)
@@ -33,14 +33,16 @@ module Anakin
   #        [{"center":{"x":282.621887207031,"y":268.956695556641},"keypoints":[],"label":"8"}]}]}]
       refined_results = []
       results.map do |res|
-        res['values'].each do |node_value|
-          node_value['values'].each do |value|
-            refined_value = value
-            pattern = Pattern.find value['label']
-            refined_value['label'] = pattern.label
-            refined_value['id'] = pattern.id 
-            refined_value['url'] = pattern.file.url
-            refined_results.push refined_value
+        if res['values'].present? 
+          res['values'].each do |node_value|
+            node_value['values'].each do |value|
+              refined_value = value
+              pattern = Pattern.find value['label']
+              refined_value['label'] = pattern.label
+              refined_value['id'] = pattern.id 
+              refined_value['url'] = pattern.file.url
+              refined_results.push refined_value
+            end
           end
         end
       end

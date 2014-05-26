@@ -4,7 +4,7 @@ class Pattern < ActiveRecord::Base
 
 	belongs_to :user
   belongs_to :category
-  #belongs_to :trainer, counter_cache: true
+  belongs_to :trainer, counter_cache: true
   has_one :histogram
   has_one :descriptor
 
@@ -15,6 +15,8 @@ class Pattern < ActiveRecord::Base
 
   after_initialize :add_aid
   before_create :extract_information
+
+  scope :to_be_trained, lambda{ where(position: nil).order("patterns.id asc")}
 
   def category_name
     category.title

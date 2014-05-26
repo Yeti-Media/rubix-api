@@ -4,7 +4,7 @@ defaults: &defaults
     categories:
       - matching
     limit:
-      1000
+      5
   anakin:
     load_balancer:
       host: 127.0.0.1

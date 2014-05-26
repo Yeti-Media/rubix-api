@@ -1,6 +1,6 @@
 class PatternsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :check_pattern_rate_limit, only: [:create]
+  #before_filter :check_pattern_rate_limit, only: [:create]
   before_filter :load_category, only: [:index]
   before_filter :load_pattern, only: [:edit, :destroy, :update]
 
