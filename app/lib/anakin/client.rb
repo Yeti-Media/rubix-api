@@ -18,7 +18,15 @@ module Anakin
         req.headers['Content-Type'] = 'application/json'
         req.body = Yajl::Encoder.encode(body)
       end
-      Yajl::Parser.parse(response.body)
+      begin
+        Yajl::Parser.parse(response.body)
+      rescue Yajl::ParseError
+        if response.body == "OK" 
+          return {status: 'OK'}
+        else
+          return {error: "OOOOPPS. Unknown error"}
+        end
+      end
     end
     
     protected
