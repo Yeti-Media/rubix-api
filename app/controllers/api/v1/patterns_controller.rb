@@ -1,5 +1,5 @@
 class Api::V1::PatternsController < Api::V1::BaseController
-  #before_filter :check_pattern_rate_limit, only: [:create]
+  before_filter :check_pattern_rate_limit, only: [:create]
 
   resource_description do
     resource_id "Pattern creation"
