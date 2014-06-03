@@ -10,8 +10,8 @@ class Trainer < ActiveRecord::Base
   #scope :availables, lambda{where("trainers.patterns_count < #{Settings.patterns.limit}")}
 
   def self.availables
-    self.joins('LEFT JOIN patterns ON patterns.trainer_id = trainers.id').
-            group('trainers.id').
+    self.includes(:patterns).
+            group('trainers.id, patterns.id').
             having("COUNT(patterns.id) < #{Settings.patterns.limit}")
   end
 
