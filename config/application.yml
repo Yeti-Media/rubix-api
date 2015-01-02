@@ -9,6 +9,9 @@ defaults: &defaults
     load_balancer:
       host: 127.0.0.1
       port: 8080
+    scene_text_ocr:
+      host: 127.0.0.1
+      port: 8081
   threescale:
     provider_key: deb3a45bcb74842cd38878b346e5d066
   user:

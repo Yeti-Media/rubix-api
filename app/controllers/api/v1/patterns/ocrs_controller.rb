@@ -14,6 +14,7 @@ class Api::V1::Patterns::OcrsController < Api::V1::BaseController
   param :file, File, desc: "Image file"
   param :remote_file_url, String, desc: "URL of an image file"
   param :rectangles, Array, desc: "Array of points. Example: [[x1,y1,x2,y2],..[x1,y1,x2,y2]]"
+  param :image_type, ["document","photo"], short: "Type of image", desc: "Type of image. A document is expected to be full of text and well aligned. A photo is expected to contain some scenery and some text, not necessarily aligned in any particular way."
   example '{"values":[{"text":"this is \na\ntest"}]}' 
 
   def create
