@@ -12,8 +12,8 @@ module Anakin
       validate
     end
 
-    def perform(body)
-      response = client.post do |req|
+    def perform(body,service = "load_balancer")
+      response = client(service).post do |req|
         req.url '/'
         req.headers['Content-Type'] = 'application/json'
         req.body = Yajl::Encoder.encode(body)
@@ -35,10 +35,11 @@ module Anakin
       true
     end
 
-    def client
-      @client ||= begin 
-        host = Settings.anakin.load_balancer.host
-        port = Settings.anakin.load_balancer.port
+    def client(service = "load_balancer")
+      @client ||= {}
+      @client[service] ||= begin 
+        host = Settings.anakin[service]["host"]
+        port = Settings.anakin[service]["port"]
         Faraday.new(url: "http://#{host}:#{port}/")
       end
     end
