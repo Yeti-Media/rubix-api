@@ -31,3 +31,6 @@ production:
     load_balancer:
       host: 66.175.218.188 
       port: 8080
+    scene_text_ocr:
+      host: 127.0.0.1
+      port: 8081
