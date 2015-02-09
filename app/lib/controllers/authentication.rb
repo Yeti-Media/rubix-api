@@ -22,7 +22,7 @@ module Controllers
 
     def authenticate_with_3scale!
       client = ThreeScale::Client.new(provider_key: Settings.threescale.provider_key)
-      response = client.authorize(user_key: request.headers['HTTP_USER_KEY'], usage: { hits: 1 })
+      response = client.authrep(user_key: request.headers['HTTP_USER_KEY'], usage: { hits: 1 })
       if response.success? && load_user(request.headers['HTTP_USER_KEY'])
         true
       else
