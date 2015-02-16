@@ -23,6 +23,9 @@ AnakinWebapp::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :categories
+      namespace :face do
+        resource :detect, controller: 'face_detector'
+      end
       namespace :patterns do
         resource :ocr
         resource :feature_matcher

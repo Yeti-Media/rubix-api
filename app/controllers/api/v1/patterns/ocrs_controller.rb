@@ -20,7 +20,7 @@ class Api::V1::Patterns::OcrsController < Api::V1::BaseController
   def create
     
     begin
-      if scenario = create_scenario('ocr')
+      if scenario = new_scenario('ocr')
         matcher = Anakin::OCR.new
         @result = matcher.ocr(scenario: scenario, flags: params)
         scenario.save
@@ -31,21 +31,6 @@ class Api::V1::Patterns::OcrsController < Api::V1::BaseController
     rescue Anakin::GeneralError => e
       render json: {error: 'something unexpected happened. We are resolving this conflict. Thank tou', log: e.message}, status: 500
     end
-  end
-
-  private
-
-  def create_scenario(category)
-    if params[:file].present?
-      attrs = {file: params[:file]}
-    elsif params[:remote_file_url].present?
-      attrs = {remote_file_url: params[:remote_file_url]}
-    else
-      return false
-    end
-    attrs[:category_id] = Category.find_by(title: category).id
-    params = ActionController::Parameters.new(attrs)
-    Scenario.new(params.permit(:file, :remote_file_url,:category_id))
   end
 
 end
