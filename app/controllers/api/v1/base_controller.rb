@@ -7,7 +7,7 @@ class Api::V1::BaseController < ApplicationController
 
   protected
 
-  def create_scenario(category)
+  def params_scenario(category)
     if params[:file].present?
       attrs = {file: params[:file]}
     elsif params[:remote_file_url].present?
@@ -17,7 +17,15 @@ class Api::V1::BaseController < ApplicationController
     end
     attrs[:category_id] = Category.find_by(title: category).id
     params = ActionController::Parameters.new(attrs)
-    Scenario.create(params.permit(:file, :remote_file_url,:category_id))
+    params.permit(:file, :remote_file_url,:category_id)
+  end
+
+  def create_scenario(category)
+    Scenario.create(params_scenario(category))
+  end
+
+  def new_scenario(category)
+    Scenario.new(params_scenario(category))
   end
 
   def cors_set_access_control_headers

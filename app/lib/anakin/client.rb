@@ -1,7 +1,4 @@
 module Anakin
-  class GeneralError < Exception
-  end
-
   class ArgumentError < Exception
 
   end
