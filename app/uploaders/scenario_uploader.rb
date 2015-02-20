@@ -6,6 +6,9 @@ class ScenarioUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  attr_accessor :original_width
+  attr_accessor :original_height
+
   # Choose what kind of storage to use for this uploader:
   storage :fog
   process resize_to_fit: [1024,1024], if: :should_be_resized?
@@ -62,7 +65,11 @@ class ScenarioUploader < CarrierWave::Uploader::Base
   protected
 
   def should_be_resized?(pic)
+    @original_width = 0
+    @original_height = 0
     image = MiniMagick::Image.open(pic.path)
+    @original_width = image[:width]
+    @original_height = image[:height]
     return image[:width] > 1024 || image[:height] > 1024 ||
            model.category.try(:title) != "ocr"
   end
