@@ -59,7 +59,11 @@ class ScenarioUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "#{original_filename.split('.').first}.png"
+    fname = original_filename || "source"
+    parts = fname.split('.')
+    parts = ["source"] if parts.length == 0
+    fname = parts.first.gsub(/[^A-Za-z0-9]/,'')
+    "#{fname}.png"
   end
 
   protected
