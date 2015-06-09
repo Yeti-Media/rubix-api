@@ -6,7 +6,7 @@ defaults: &defaults
       - ocr
       - face
     limit:
-      5
+      30
   anakin:
     load_balancer:
       host: 127.0.0.1
